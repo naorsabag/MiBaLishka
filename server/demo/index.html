@@ -30,6 +30,38 @@
         </select>
         <input type="submit" value="update occupation">
     </form>
-    <button onclick="get_all()">get current states</button>
+    <br>
+    <button onclick="get_all()">get all states</button>
+    <br>
+    <br>
+    <form method="GET" name="getFloorState" id="getFloorStateFormListener">
+        <select id="getFloorState">
+            <option value="" disabled selected>Select floor</option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+        <input type="submit" value="get floor's state">
+    </form>
+    <br>
+    <form method="GET" name="getCellState" id="getCellStateFormListener">
+        <select id="getCellStateFloor">
+            <option value="" disabled selected>Select floor</option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+        <select id="getCellStateCell">
+            <option value="" disabled selected>Select cell</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+        <input type="submit" value="get cell's state">
+    </form>
 </body>
 </html>

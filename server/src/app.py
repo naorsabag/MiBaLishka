@@ -26,18 +26,17 @@ def updateOccupyState():
 	bl.update_occupy(data["floor"],data["cell"],data["state"])
 	return json.dumps({'success':True, 'data': request.form}), 200, {'ContentType':'application/json'}
 
-@app.route('/get-current-states/', methods=['GET'])
+@app.route('/get-current-state/', methods=['GET'])
 def getCurrentStates():
-	print('bla', flush=True)
 	return json.dumps(bl.get_state(None,None)), 200, {'ContentType':'application/json'}
 
-@app.route('/<floor>/get-current-states/', methods=['GET'])
-def getFloorStates():
-	return json.dumps(bl.get_state(request.args.get('floor'))), 200, {'ContentType':'application/json'}
+@app.route('/get-current-state/<floor>/', methods=['GET'])
+def getFloorState(floor):
+	return json.dumps(bl.get_state(floor,None)), 200, {'ContentType':'application/json'}
 
-@app.route('/<floor>/<cell>/get-current-state/', methods=['GET'])
-def getCellState():
-	return json.dumps(bl.get_state(request.args.get('floor'),request.args.get('cell'))), 200, {'ContentType':'application/json'}
+@app.route('/get-current-state/<floor>/<cell>/', methods=['GET'])
+def getCellState(floor,cell):
+	return json.dumps(bl.get_state(floor,cell)), 200, {'ContentType':'application/json'}
 
 
 async def main():
