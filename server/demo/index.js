@@ -2,6 +2,7 @@ var host = location.host;
 var host_url = 'http://'+host;
 var PING_URL = '/hello/';
 var UPDATE_OCCUPY_URL = '/update-occupy-state/';
+var GET_ALL_URL = '/get-current-state/';
 
 var tid = setInterval( async () => {
   if ( document.readyState !== 'complete' ) return;
@@ -12,6 +13,8 @@ var tid = setInterval( async () => {
 async function main() {
   ping_backend();
   document.getElementById('occupationForm').addEventListener('submit', occupyFormListener);
+  document.getElementById('getFloorStateFormListener').addEventListener('submit', getFloorStateFormListener);
+  document.getElementById('getCellStateFormListener').addEventListener('submit', getCellStateFormListener);
 }
 
 async function occupyFormListener(e) {
@@ -31,10 +34,43 @@ async function occupyFormListener(e) {
     console.log(res);
 }
 
+async function getFloorStateFormListener(e) {
+    e.preventDefault(); //to prevent form submission
+    var floorSelectElm = document.getElementById("getFloorState");
+
+    var res = await get_floor_state(floorSelectElm.value);
+}
+
+async function getCellStateFormListener(e) {
+    e.preventDefault(); //to prevent form submission
+    var floorSelectElm = document.getElementById("getCellStateFloor");
+    var cellSelectElm = document.getElementById("getCellStateCell");
+
+    var res = await get_cell_state(floorSelectElm.value, cellSelectElm.value);
+}
+
 function ping_backend() {
   return fetch_backend(PING_URL).then((data) => {
     console.log(data);
   });
+}
+
+function get_all() {
+    return fetch_backend(GET_ALL_URL).then((data) => {
+        console.log(data);
+      });
+}
+
+function get_floor_state(floor) {
+    return fetch_backend(GET_ALL_URL+floor+"/").then((data) => {
+        console.log(data);
+      });
+}
+
+function get_cell_state(floor,cell) {
+    return fetch_backend(GET_ALL_URL+floor+"/"+cell+"/").then((data) => {
+        console.log(data);
+      });
 }
 
 async function fetch_backend(routing, payload) {
@@ -42,10 +78,10 @@ async function fetch_backend(routing, payload) {
 
   if(payload) {
     var data = new FormData();
-    data.append( "json", JSON.stringify( payload ));
+    data.append( "data", JSON.stringify( payload ));
     options = {
-      method: "POST",
-      body: data
+        method: "POST",
+        body: JSON.stringify( payload )
     }
   }
 

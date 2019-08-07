@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>expenses-visualizer</title>
+    <title>MiBaLishka</title>
     <script type="text/javascript" src="{{ url_for('static', filename='js/index.js')}}"async></script>
 </head>
 <body>
@@ -29,6 +29,39 @@
             <option value="false">occupy</option>
         </select>
         <input type="submit" value="update occupation">
+    </form>
+    <br>
+    <button onclick="get_all()">get all states</button>
+    <br>
+    <br>
+    <form method="GET" name="getFloorState" id="getFloorStateFormListener">
+        <select id="getFloorState">
+            <option value="" disabled selected>Select floor</option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+        <input type="submit" value="get floor's state">
+    </form>
+    <br>
+    <form method="GET" name="getCellState" id="getCellStateFormListener">
+        <select id="getCellStateFloor">
+            <option value="" disabled selected>Select floor</option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+        <select id="getCellStateCell">
+            <option value="" disabled selected>Select cell</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+        <input type="submit" value="get cell's state">
     </form>
 </body>
 </html>
