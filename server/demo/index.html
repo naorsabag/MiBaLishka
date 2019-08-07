@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>expenses-visualizer</title>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/index.js')}}"async></script>
+</head>
+<body>
+    <form method="POST" name="occupationForm" id="occupationForm">
+        <select id="floor">
+            <option value="" disabled selected>Select floor</option>
+            <option value="food">0</option>
+            <option value="food">1</option>
+            <option value="food">2</option>
+            <option value="food">3</option>
+            <option value="food">4</option>
+        </select>
+        <select id="cell">
+            <option value="" disabled selected>Select cell</option>
+            <option value="food">1</option>
+            <option value="food">2</option>
+            <option value="food">3</option>
+        </select>
+        <select id="state">
+            <option value="" disabled selected>Select state</option>
+            <option value="food">true</option>
+            <option value="food">false</option>
+        </select>
+        <input type="submit" value="update occupation">
+    </form>
+</body>
+</html>
