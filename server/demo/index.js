@@ -2,6 +2,9 @@ var host = location.host;
 var host_url = 'http://'+host;
 var PING_URL = '/hello/';
 var UPDATE_OCCUPY_URL = '/update-occupy-state/';
+var GET_CELL_URL = '/update-occupy-state/';
+var GET_FLOOR_URL = '/update-occupy-state/';
+var GET_ALL_URL = '/get-current-states/';
 
 var tid = setInterval( async () => {
   if ( document.readyState !== 'complete' ) return;
@@ -37,15 +40,33 @@ function ping_backend() {
   });
 }
 
+function get_cell() {
+    return fetch_backend(GET_ALL_URL).then((data) => {
+        console.log(data);
+      });
+}
+
+function get_floor() {
+    return fetch_backend(GET_ALL_URL).then((data) => {
+        console.log(data);
+      });
+}
+
+function get_all() {
+    return fetch_backend(GET_ALL_URL).then((data) => {
+        console.log(data);
+      });
+}
+
 async function fetch_backend(routing, payload) {
   var options = null;
 
   if(payload) {
     var data = new FormData();
-    data.append( "json", JSON.stringify( payload ));
+    data.append( "data", JSON.stringify( payload ));
     options = {
-      method: "POST",
-      body: data
+        method: "POST",
+        body: JSON.stringify( payload )
     }
   }
 
